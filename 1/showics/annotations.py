@@ -16,7 +16,7 @@ from django.conf.urls import *
 from django.http import HttpResponse, HttpResponseRedirect
 
 
-def login_required(is_ajax=False, access_token=None, login_page='login'):
+def login_required(is_ajax=False, access_token=None, login_page=''):
     def paramed_decorator(func):
         @functools.wraps(func)
         def decorated(*args, **kwargs):
@@ -35,7 +35,7 @@ def login_required(is_ajax=False, access_token=None, login_page='login'):
     return paramed_decorator
 
 
-def url(url_pattern, *args, **kwargs):
+def to_url(url_pattern, *args, **kwargs):
     def paramed_decorator(func):
         @functools.wraps(func)
         def decorated(self):

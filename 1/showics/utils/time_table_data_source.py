@@ -28,7 +28,7 @@ def read_time_table(year, month):
     parser = Yyets()
     parser.feed(html_text)
     time_table = parser.time_table
-    print ical_data(year, month, time_table)
+    return ical_data(year, month, time_table)
 
 
 class Yyets(HTMLParser):

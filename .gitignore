@@ -36,5 +36,8 @@ nosetests.xml
 .pydevproject
 
 
-＃ idea
+# idea
 .idea
+
+# sae
+.svn

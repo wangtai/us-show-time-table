@@ -5,10 +5,30 @@
 """
 获得yyets数据
 """
+import urllib
 
 __revision__ = '0.1'
 
 from HTMLParser import HTMLParser
+from ical_data_bridge import ical_data
+
+
+def read_time_table(year, month):
+    """
+    :rtype : {}
+    :param year: int
+    :param month: int
+    """
+    if month < 10:
+        s_month = '0%s' % month
+    else:
+        s_month = str(month)
+    url = 'http://www.yyets.com/tv/schedule/index/year/{0}/month/{1}'.format(year, s_month)
+    html_text = urllib.urlopen(url).read()
+    parser = Yyets()
+    parser.feed(html_text)
+    time_table = parser.time_table
+    print ical_data(year, month, time_table)
 
 
 class Yyets(HTMLParser):
@@ -24,6 +44,7 @@ class Yyets(HTMLParser):
     """
 
     time_table = {}
+
     def __init__(self):
         HTMLParser.__init__(self)
         self.in_time_table = False
@@ -57,7 +78,7 @@ class Yyets(HTMLParser):
         if self.in_time_table and self.in_dt:
             self.date = data
             if data not in self.time_table:
-                self.time_table.setdefault(data,{})
+                self.time_table.setdefault(data, {})
         if self.in_time_table and self.inDD and self.in_font:
             self.time_table[self.date][self.data_seq_id].setdefault('title', data)
         pass

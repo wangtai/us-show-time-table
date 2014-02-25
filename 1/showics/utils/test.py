@@ -19,14 +19,16 @@ class MyTestCase(unittest.TestCase):
         parser.feed(html_text_utf8)
         # print parser.time_table
         time_table = parser.time_table
-        from ical_data_bridge import ical_data
-        print ical_data(2014,2, time_table)
         self.assertNotEqual(parser.time_table, '')
 
     def test_ical_data_bridge(self):
         from ical_data_bridge import ical_data
-        # print ical_data(2014,2, {})
+        print ical_data(2014,2, {})
         pass
+
+    def test_read_time_table(self):
+        from time_table_data_source import read_time_table
+        print read_time_table(2012, 2)
 
 
 if __name__ == '__main__':

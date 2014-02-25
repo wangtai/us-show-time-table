@@ -10,7 +10,6 @@ import urllib
 __revision__ = '0.1'
 
 from HTMLParser import HTMLParser
-from ical_data_bridge import ical_data
 
 
 def read_time_table(year, month):
@@ -27,8 +26,7 @@ def read_time_table(year, month):
     html_text = urllib.urlopen(url).read()
     parser = Yyets()
     parser.feed(html_text)
-    time_table = parser.time_table
-    return ical_data(year, month, time_table)
+    return parser.time_table
 
 
 class Yyets(HTMLParser):

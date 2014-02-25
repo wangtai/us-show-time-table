@@ -14,6 +14,7 @@ from HTMLParser import HTMLParser
 class Yyets(HTMLParser):
     """
     http://www.yyets.com/tv/schedule
+    http://www.yyets.com/tv/schedule/index/year/2014/month/02
     {'1号': {
         seqid: {
             'url': 'xxx',

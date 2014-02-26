@@ -17,11 +17,14 @@ ORGANIZER;CN=John Doe:MAILTO:john.doe@example.com
 DTSTART:19970714T170000Z
 DTEND:19970715T035959Z
 SUMMARY:Bastille Day Party
+UID:fea40780-6f35-341b-a3a4-a3951cce6c12
 END:VEVENT
 END:VCALENDAR
 """
 
 __revision__ = '0.1'
+
+import uuid
 
 def ical_data(year, month, time_table):
     """
@@ -48,6 +51,7 @@ def ical_data(year, month, time_table):
 
     for s_date, event_list in time_table.iteritems():
         # print "%s %s" % (s_date, event_list)
+        s_uuid = str(uuid.uuid1())
         date = int(s_date[:-3])
         if date < 10:
             s_date = '0%s' % date
@@ -60,9 +64,10 @@ def ical_data(year, month, time_table):
         s_date = "%s%s%s" % (year, s_month, s_date)
         for seqid, event in event_list.iteritems():
             data += 'BEGIN:VEVENT\n'
-            data += 'DTSTART;VALUE=DATE:%s\n' % s_date
-            data += 'DTEND;VALUE=DATE:%s\n' % s_date
-            data += 'SUMMARY:%s (%s)\n' % (event['title'], event['url'])
+            data += u'DTSTART;VALUE=DATE:{0}\n'.format(s_date)
+            data += u'DTEND;VALUE=DATE:{0}\n'.format(s_date)
+            data += 'SUMMARY:{0} ({1})\n'.format(event['title'], event['url'])
+            data += 'UID:{0}'.format(s_uuid)
             data += 'END:VEVENT\n'
     data += 'END:VCALENDAR'
 

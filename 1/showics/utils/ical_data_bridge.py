@@ -6,6 +6,9 @@
 把网上的数据处理成ical格式
 BEGIN:VCALENDAR
 VERSION:2.0
+X-APPLE-LANGUAGE:zh
+X-APPLE-REGION:CN
+X-WR-CALNAME:中国节假日
 PRODID:-//hacksw/handcal//NONSGML v1.0//EN
 BEGIN:VEVENT
 UID:uid1@example.com
@@ -39,6 +42,10 @@ def ical_data(year, month, time_table):
     data = 'BEGIN:VCALENDAR\n'
     data += 'VERSION:2.0\n'
     data += 'PRODID:-//wangtai//US_SHOW_TABLE//CN\n'
+    data += 'X-APPLE-LANGUAGE:zh\n'
+    data += 'X-APPLE-REGION:CN\n'
+    data += 'X-WR-CALNAME:美剧时间表\n'
+
     for s_date, event_list in time_table.iteritems():
         # print "%s %s" % (s_date, event_list)
         date = int(s_date[:-3])

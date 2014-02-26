@@ -66,7 +66,8 @@ def ical_data(year, month, time_table):
             data += 'DTSTART;VALUE=DATE:{0}\n'.format(s_date)
             data += 'DTEND;VALUE=DATE:{0}\n'.format(s_date)
             data += 'SUMMARY:{0} ({1})\n'.format(event['title'], event['url'])
-            s_uuid = str(uuid.uuid1())
+            # s_uuid = str(uuid.uuid1())
+            s_uuid = '{}_{}_{}_{}'.format(year, s_month, s_date, event['url'].split('/')[-1])
             data += 'UID:{0}\n'.format(s_uuid)
             data += 'END:VEVENT\n'
     data += 'END:VCALENDAR'

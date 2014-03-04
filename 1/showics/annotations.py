@@ -15,6 +15,8 @@ import json
 from django.conf.urls import *
 from django.http import HttpResponse, HttpResponseRedirect
 
+strlist = 'strlist'
+intlist = 'intlist'
 
 def login_required(is_ajax=False, access_token=None, login_page=''):
     def paramed_decorator(func):
@@ -115,12 +117,12 @@ def _param(method_name, *p_args, **p_kwargs):
                             value = True
                         else:
                             value = bool(origin_v)
-                    elif _type == 'strlist':
+                    elif _type == strlist:
                         value = []
                         for item in origin_v.split(','):
                             if len(item) > 0:
                                 value.append(item)
-                    elif _type == 'intlist':
+                    elif _type == intlist:
                         value = []
                         for item in origin_v.split(','):
                             try:
@@ -150,7 +152,7 @@ def _param(method_name, *p_args, **p_kwargs):
 
 
 def get(*p_args, **p_kwargs):
-    '''
+    """
     @get('param1', 'param2')
     @get(param1={'name':'parameter_name', 'type':int, 'default':0})
     @get(param1={'type':int, 'default':0})
@@ -158,7 +160,7 @@ def get(*p_args, **p_kwargs):
     @get(param1=('param_name', int, 0))
     @get(param1=(int, 0))
     @get(param1=int)
-    '''
+    """
     return _param('get', *p_args, **p_kwargs)
 
 

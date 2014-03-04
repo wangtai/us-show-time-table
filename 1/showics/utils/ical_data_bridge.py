@@ -26,9 +26,8 @@ __revision__ = '0.1'
 
 import uuid
 
-def ical_data(year, month, time_table):
+def ical_data(year, month, time_table, special_ids = []):
     """
-
     :param year: int
     :param month: int
     :param time_table:
@@ -39,6 +38,7 @@ def ical_data(year, month, time_table):
                             'title': 'yyy'
                         }
                     }}
+    :param special_ids: []
     :rtype : str
     """
 
@@ -62,11 +62,15 @@ def ical_data(year, month, time_table):
             s_month = str(month)
         s_date = "%s%s%s" % (year, s_month, s_date)
         for seqid, event in event_list.iteritems():
+            show_id = event['url'].split('/')[-1]
+            if show_id not in special_ids and len(special_ids) != 0:
+                continue
             data += 'BEGIN:VEVENT\n'
             data += 'DTSTART;VALUE=DATE:{0}\n'.format(s_date)
             data += 'DTEND;VALUE=DATE:{0}\n'.format(s_date)
             data += 'SUMMARY:{0} ({1})\n'.format(event['title'], event['url'])
-            s_uuid = str(uuid.uuid1())
+            # s_uuid = str(uuid.uuid1())
+            s_uuid = '{}_{}_{}_{}'.format(year, s_month, s_date, show_id)
             data += 'UID:{0}\n'.format(s_uuid)
             data += 'END:VEVENT\n'
     data += 'END:VCALENDAR'

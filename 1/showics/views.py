@@ -31,8 +31,8 @@ def fetch_yyets_data(request):
 
 
 @to_url('^time_table.ics$')
-@get(c_type=(str), show_id=(strlist))
-def fetch_yyets_data(request, c_type='', show_id = []):
+@get(c_type=(str, ""), show_id=(strlist, []))
+def fetch_yyets_data(request, c_type, show_id):
     i_year = int(time.strftime('%Y'))
     i_this_month = int(time.strftime('%m'))
     time_table = time_table_data_source.read_time_table(i_year, i_this_month)

@@ -28,7 +28,6 @@ import uuid
 
 def ical_data(year, month, time_table, special_ids = []):
     """
-
     :param year: int
     :param month: int
     :param time_table:
@@ -39,6 +38,7 @@ def ical_data(year, month, time_table, special_ids = []):
                             'title': 'yyy'
                         }
                     }}
+    :param special_ids: []
     :rtype : str
     """
 

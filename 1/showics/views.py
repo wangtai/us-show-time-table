@@ -31,12 +31,12 @@ def fetch_yyets_data(request):
 
 
 @to_url('^time_table.ics$')
-@get(c_type=(str, ""), show_id=(strlist, []))
-def fetch_yyets_data(request, c_type, show_id):
+@get(c_type=(str, ""), show_ids=(strlist, []))
+def fetch_yyets_data(request, c_type, show_ids):
     i_year = int(time.strftime('%Y'))
     i_this_month = int(time.strftime('%m'))
     time_table = time_table_data_source.read_time_table(i_year, i_this_month)
-    ical_data = ical_data_bridge.ical_data(i_year, i_this_month, time_table)
+    ical_data = ical_data_bridge.ical_data(i_year, i_this_month, time_table, show_ids)
     if (c_type == 'file'):
         #Content-Type:text/calendar; charset=UTF-8
         return HttpResponse(content=ical_data, content_type='Content-Type:text/calendar; charset=UTF-8')

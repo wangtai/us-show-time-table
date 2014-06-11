@@ -42,3 +42,5 @@ nosetests.xml
 # sae
 .svn
 **/svn-commit.tmp
+
+**/*.wsgic

@@ -1,6 +1,6 @@
 # Django settings for showics project.
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -12,12 +12,13 @@ MANAGERS = ADMINS
 import sae.const
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': sae.const.MYSQL_DB,                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': sae.const.MYSQL_USER,
         'PASSWORD': sae.const.MYSQL_USER,
-        'HOST': sae.const.MYSQL_HOST,                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'HOST': sae.const.MYSQL_HOST,
         'PORT': sae.const.MYSQL_HOST,                      # Set to empty string for default.
     }
 }
@@ -80,7 +81,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -90,7 +91,7 @@ SECRET_KEY = 'w1w!#x^2=vj9*+!xzfw5e$5t(=uh7a$skm=ql(&@am8g%_hgri'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    #     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
